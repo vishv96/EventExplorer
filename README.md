@@ -1,3 +1,9 @@
+
+
+
+https://github.com/user-attachments/assets/181bb19a-0c4a-49b1-b62c-539e6833f603
+
+
 # EventExplorer
 
 A local events explorer for iOS. Lists nearby events, shows distance from the user's current location, supports bookmarking, background refresh, and deep-links into Apple Maps for navigation.
