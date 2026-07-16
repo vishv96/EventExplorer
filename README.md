@@ -100,8 +100,6 @@ sequenceDiagram
     end
 ```
 
-Note: on a cache hit, DTOs map straight to `[Event]` for the ViewModel/state without touching SwiftData, so `@Query` won't see new writes for that call — the list still reflects whatever was last persisted.
-
 ### Key design decisions
 
 **SwiftData as single source of truth.** The UI reads events reactively via `@Query`; the repository's only job is keeping the store fresh from the network. This avoids the duplicate-source-of-truth problem of holding a second `[Event]` array in the ViewModel.
