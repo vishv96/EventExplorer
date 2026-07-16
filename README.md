@@ -61,6 +61,47 @@ MVVM with a repository layer, protocol-based dependency injection, and SwiftData
 └────────────────┘
 ```
 
+### Event Fetch/Refresh Sequence
+
+```mermaid
+sequenceDiagram
+    actor User
+    participant View as EventListingView
+    participant VM as EventLisingViewModel
+    participant Repo as EventRepositoryImpl
+    participant Cache as EventCache
+    participant Net as NetworkService
+    participant DB as ModelContext (SwiftData)
+
+    User->>View: appears / pull-to-refresh
+    View->>VM: loadEvents() / refresh()
+    VM->>VM: state = .loading
+    VM->>Repo: fetchEvents()
+    Repo->>Cache: get(for: EndPoint.events.path)
+
+    alt cache hit (within 60s TTL)
+        Cache-->>Repo: [EventDTO]
+    else cache miss / expired
+        Repo->>Net: request(.events)
+        Net-->>Repo: ResponseDTO
+        Repo->>Cache: set(events, for: path)
+        Repo->>DB: fetch existing Event by id
+        Repo->>DB: update fields or insert(Event)
+        Repo->>DB: save()
+        DB-->>View: @Query auto-refresh
+    end
+
+    Repo-->>VM: [Event]
+    alt success
+        VM->>VM: state = .contentLoaded
+    else network/decode error
+        VM->>VM: state = .error(ErrorModel)
+        VM-->>View: onChange(state) shows Alert
+    end
+```
+
+Note: on a cache hit, DTOs map straight to `[Event]` for the ViewModel/state without touching SwiftData, so `@Query` won't see new writes for that call — the list still reflects whatever was last persisted.
+
 ### Key design decisions
 
 **SwiftData as single source of truth.** The UI reads events reactively via `@Query`; the repository's only job is keeping the store fresh from the network. This avoids the duplicate-source-of-truth problem of holding a second `[Event]` array in the ViewModel.
