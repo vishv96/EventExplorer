@@ -34,31 +34,33 @@ A local events explorer for iOS. Lists nearby events, shows distance from the us
 
 MVVM with a repository layer, protocol-based dependency injection, and SwiftData as the single source of truth.
 
-```
-┌─────────────────────────────────────────────────┐
-│  Views (SwiftUI)                                │
-│  EventListView · EventDetailView                │
-│  reads events reactively via @Query             │
-└──────────────┬──────────────────────────────────┘
-               │
-┌──────────────▼──────────────────────────────────┐
-│  ViewModels (@Observable, @MainActor)           │
-│  EventLisingViewModel — ViewState enum          │
-│  (loading / contentLoaded / error)              │
-└──────────────┬──────────────────────────────────┘
-               │ EventRepository (protocol)
-┌──────────────▼──────────────────────────────────┐
-│  EventRepositoryImpl                            │
-│  fetch → decode DTOs → upsert into SwiftData    │
-└───────┬─────────────────────────┬───────────────┘
-        │ NetworkService          │ ModelContext
-┌───────▼────────┐        ┌───────▼───────────────┐
-│ LiveNetwork-   │        │ SwiftData             │
-│ Service        │        │ Event · Location      │
-│ (Endpoint enum │        │ (single source of     │
-│  + generic     │        │  truth for UI)        │
-│  request<T>)   │        └───────────────────────┘
-└────────────────┘
+```mermaid
+flowchart TB
+    subgraph Views["Views (SwiftUI)"]
+        direction TB
+        V["EventListingView · EventDetailView<br/>reads events reactively via @Query"]
+    end
+
+    subgraph ViewModels["ViewModels (@Observable, @MainActor)"]
+        direction TB
+        VM["EventLisingViewModel — ViewState enum<br/>(loading / contentLoaded / error)"]
+    end
+
+    subgraph Repo["Repository"]
+        direction TB
+        R["EventRepositoryImpl<br/>fetch → check cache → decode DTOs → upsert into SwiftData"]
+    end
+
+    Cache["EventCache (actor)<br/>NSCache-backed, TTL-gated"]
+    Net["NetworkService (protocol)<br/>EndPoint enum + generic request&lt;T&gt;<br/>impl: MockNetworkService"]
+    DB[("SwiftData<br/>Event · Location<br/>(single source of truth for UI)")]
+
+    Views -->|"@Query"| ViewModels
+    ViewModels -->|"EventRepository (protocol)"| Repo
+    Repo --> Cache
+    Repo -->|"on cache miss"| Net
+    Repo -->|ModelContext| DB
+    DB -.->|reactive updates| Views
 ```
 
 ### Event Fetch/Refresh Sequence
