@@ -1,0 +1,124 @@
+{
+  "events": [
+    {
+      "id": "evt_001",
+      "title": "Toronto Jazz Night",
+      "location": {
+        "name": "Rex Hotel Jazz Bar",
+        "address": "194 Queen St W, Toronto, ON",
+        "latitude": 43.6511,
+        "longitude": -79.3877
+      },
+      "time": "2026-07-18T19:30:00-04:00",
+      "imageUrl": "https://picsum.photos/id/101/600/400"
+    },
+    {
+      "id": "evt_002",
+      "title": "Distillery District Art Walk",
+      "location": {
+        "name": "Distillery Historic District",
+        "address": "55 Mill St, Toronto, ON",
+        "latitude": 43.6503,
+        "longitude": -79.3592
+      },
+      "time": "2026-07-19T11:00:00-04:00",
+      "imageUrl": "https://picsum.photos/id/102/600/400"
+    },
+    {
+      "id": "evt_003",
+      "title": "Harbourfront Food Truck Festival",
+      "location": {
+        "name": "Harbourfront Centre",
+        "address": "235 Queens Quay W, Toronto, ON",
+        "latitude": 43.6387,
+        "longitude": -79.3816
+      },
+      "time": "2026-07-20T12:00:00-04:00",
+      "imageUrl": "https://picsum.photos/id/103/600/400"
+    },
+    {
+      "id": "evt_004",
+      "title": "Kensington Market Vintage Fair",
+      "location": {
+        "name": "Kensington Market",
+        "address": "24 Kensington Ave, Toronto, ON",
+        "latitude": 43.6547,
+        "longitude": -79.4005
+      },
+      "time": "2026-07-21T10:00:00-04:00",
+      "imageUrl": "https://picsum.photos/id/104/600/400"
+    },
+    {
+      "id": "evt_005",
+      "title": "High Park Summer Concert",
+      "location": {
+        "name": "High Park Amphitheatre",
+        "address": "1873 Bloor St W, Toronto, ON",
+        "latitude": 43.6465,
+        "longitude": -79.4637
+      },
+      "time": "2026-07-22T18:00:00-04:00",
+      "imageUrl": "https://picsum.photos/id/105/600/400"
+    },
+    {
+      "id": "evt_006",
+      "title": "Toronto Tech Meetup: Swift & AI",
+      "location": {
+        "name": "MaRS Discovery District",
+        "address": "101 College St, Toronto, ON",
+        "latitude": 43.6596,
+        "longitude": -79.3896
+      },
+      "time": "2026-07-23T18:30:00-04:00",
+      "imageUrl": "https://picsum.photos/id/106/600/400"
+    },
+    {
+      "id": "evt_007",
+      "title": "Riverdale Farmers Market",
+      "location": {
+        "name": "Riverdale Park",
+        "address": "201 Winchester St, Toronto, ON",
+        "latitude": 43.6688,
+        "longitude": -79.3567
+      },
+      "time": "2026-07-24T09:00:00-04:00",
+      "imageUrl": "https://picsum.photos/id/107/600/400"
+    },
+    {
+      "id": "evt_008",
+      "title": "CN Tower Rooftop Yoga",
+      "location": {
+        "name": "CN Tower",
+        "address": "290 Bremner Blvd, Toronto, ON",
+        "latitude": 43.6426,
+        "longitude": -79.3871
+      },
+      "time": "2026-07-25T07:00:00-04:00",
+      "imageUrl": "https://picsum.photos/id/108/600/400"
+    },
+    {
+      "id": "evt_009",
+      "title": "Leslieville Comedy Night",
+      "location": {
+        "name": "The Ossington",
+        "address": "61 Ossington Ave, Toronto, ON",
+        "latitude": 43.6444,
+        "longitude": -79.4198
+      },
+      "time": "2026-07-26T20:00:00-04:00",
+      "imageUrl": "https://picsum.photos/id/109/600/400"
+    },
+    {
+      "id": "evt_010",
+      "title": "Scarborough Bluffs Sunrise Hike",
+      "location": {
+        "name": "Scarborough Bluffs Park",
+        "address": "1 Brimley Rd S, Toronto, ON",
+        "latitude": 43.7075,
+        "longitude": -79.2323
+      },
+      "time": "2026-07-27T06:00:00-04:00",
+      "imageUrl": "https://picsum.photos/id/110/600/400"
+    }
+  ]
+}
